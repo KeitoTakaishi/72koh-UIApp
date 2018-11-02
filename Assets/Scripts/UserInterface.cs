@@ -2,37 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace uOSC
+public class UserInterface : MonoBehaviour
 {
+    private int _id = 0;
+    public int ID{
+        get { return _id;}
+        set { _id = value; } 
+    }
 
-	[RequireComponent(typeof(uOscClient))]
-	public class UserInterface : MonoBehaviour
+	void Start()
 	{
-		private int id = 0;
 
-		void Start()
-		{
-
-		}
-
-		void Update()
-		{
-			if (Input.GetMouseButtonDown(0))
-			{
-				//var client = GetComponent < uOscClient >();
-				//client.Send("/uOSC/test", Input.mousePosition.x);
-			}
-			var client = GetComponent < uOscClient >();
-			//client.Send("/uOSC/test",0);
-		}
-
-
-		public void OnClick()
-		{
-			//Debug.Log("Button click!");
-			var client = GetComponent < uOscClient >();
-			client.Send("/uOSC/test", this.gameObject.name);
-		}
 	}
 
+	void Update()
+	{
+        if (Time.frameCount % 3 == 0)
+        {
+            ID = 0;
+        }
+	}
+
+
+	public void OnClick()
+	{
+        ID = 1;
+	}
 }
+

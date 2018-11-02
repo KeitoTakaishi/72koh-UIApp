@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   address: 127.0.0.1
-  port: 3333
+  port: 8000
 --- !u!4 &101573258
 Transform:
   m_ObjectHideFlags: 0
