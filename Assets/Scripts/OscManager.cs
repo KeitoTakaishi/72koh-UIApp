@@ -11,7 +11,8 @@ public class OscManager : MonoBehaviour {
 	void Start () {
         buttons = GameObject.FindGameObjectsWithTag("Button");
         client = this.GetComponent<uOscClient>();
-	}
+        client.Send("/1/push0", 0.0);
+    }
 	
 	void Update () {
         foreach(var _ in buttons){
