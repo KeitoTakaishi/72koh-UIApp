@@ -15,7 +15,8 @@ public class OscManager : MonoBehaviour {
     }
 	
 	void Update () {
-        foreach(var _ in buttons){
+        client.Send("/1/push0", 0.0);
+        foreach (var _ in buttons){
             if (_.GetComponent<UserInterface>().ID == 1)
             {
                 Debug.Log(_.name);
