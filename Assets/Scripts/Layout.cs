@@ -9,7 +9,9 @@ public class Layout : MonoBehaviour {
     static Text[,] _text = new Text[12, 6];
     public Font _font;
     public Sprite _sprite;
-
+    public GameObject[] shikiri = new GameObject[3];
+    private int shikiriId = 0;
+    int index = 0;
 	void Start () {
         _buffer = GameObject.FindGameObjectsWithTag("Button");
         foreach(var _ in GameObject.FindGameObjectsWithTag("Button")){
@@ -27,12 +29,24 @@ public class Layout : MonoBehaviour {
                 _buttons[i, j].GetComponent<Image>().type = Image.Type.Tiled;
                 _buttons[i, j].GetComponent<Image>().fillCenter = false;
                 _buttons[i, j].GetComponent<Image>().sprite = _sprite;
+                //_buttons[i, j].GetComponent<Button>().colors = Color.yellow;
+                var colors = _buttons[i, j].GetComponent<Button>().colors;
+                colors.pressedColor = new Color(1.0f, 0.75f, 0.15f, 0.8f);
+                _buttons[i, j].GetComponent<Button>().colors = colors;
+
 
                 _text[i, j] = _buttons[i, j].transform.GetChild(0).GetComponent<Text>();
                 //_text[i, j].transform.localScale = new Vector3(1.5f, 0.8f, 1.0f);
                 _text[i, j].transform.localScale = new Vector3(2.0f, 2.0f, 1.0f);
                 _text[i, j].fontSize = 20;
                 _text[i, j].font = _font;
+            }
+            //しきりの配置
+            if(i < 11 && (i+1)% 3 == 0){
+                Debug.Log("------------------------------------");
+                var p = new Vector3(_buttons[i, 2].transform.position.x, 1900 - i * 160 - 80, _buttons[i, 2].transform.position.z);
+                shikiri[shikiriId].transform.position = p;
+                ++shikiriId;
             }
         }
 	}
